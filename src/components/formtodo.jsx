@@ -49,8 +49,7 @@ export const FormToDo = (props) => {
 
     async function DeleteAllTasks(){
         await fetch('https://assets.breatheco.de/apis/fake/todos/user/piero',{
-            method : 'PUT',
-            body: '[]',
+            method : 'DELETE',
             headers : {
                 'Content-Type' : 'application/json'
             }
@@ -65,8 +64,8 @@ export const FormToDo = (props) => {
     )
     return(
         <>  <div className="container">
-                <span>{JSON.stringify(task)}</span>
-                <span>{JSON.stringify(list)}</span>
+                {/* <span>{JSON.stringify(task)}</span>
+                <span>{JSON.stringify(list)}</span> */}
                 <form onSubmit={(event) => {list.push(task); setTask({label:""}); event.preventDefault(); AddTaskToList(list)}}>
                 <input type="text" value={task.label} className="input" onChange={(event) => {setTask({label: event.target.value, done: false})}} placeholder="Ingresa tu Tarea"/>
             </form>
