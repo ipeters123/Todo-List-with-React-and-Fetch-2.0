@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import Button from 'react-bootstrap/Button';
 
-// Crear funcion que cree el usuario, este se usa una sola vez y luego no se vuelve a llamar mas
+// Create function created by the user, this is used only once and then it is not called again
 
 function CreateUser(){
-    fetch('https://assets.breatheco.de/apis/fake/todos/user/piero',{
+    fetch('https://assets.breatheco.de/apis/fake/todos/user/ipeters123',{
         method: 'POST',
         body: '[]',
         headers : {
@@ -20,13 +20,13 @@ function CreateUser(){
 
 export const FormToDo = (props) => {
         
-    // Crear funcion que importe las tareas desde la API
+    // Create function that imports tasks from the API
     
     const[list, setList]=useState([]);
     const[task, setTask]=useState({});
 
     async function GetTaskFromList(){
-        const response = await fetch('https://assets.breatheco.de/apis/fake/todos/user/piero',{
+        const response = await fetch('https://assets.breatheco.de/apis/fake/todos/user/ipeters123',{
             method : 'GET',
             headers : {
                 'Content-Type' : 'application/json'
@@ -38,7 +38,7 @@ export const FormToDo = (props) => {
     }
     
     async function AddTaskToList(props){
-        await fetch('https://assets.breatheco.de/apis/fake/todos/user/piero',{
+        await fetch('https://assets.breatheco.de/apis/fake/todos/user/ipeters123',{
             method : 'PUT',
             body: JSON.stringify(props),
             headers : {
@@ -48,7 +48,7 @@ export const FormToDo = (props) => {
     }
 
     async function DeleteAllTasks(){
-        await fetch('https://assets.breatheco.de/apis/fake/todos/user/piero',{
+        await fetch('https://assets.breatheco.de/apis/fake/todos/user/ipeters123',{
             method : 'DELETE',
             headers : {
                 'Content-Type' : 'application/json'
@@ -67,12 +67,12 @@ export const FormToDo = (props) => {
                 {/* <span>{JSON.stringify(task)}</span>
                 <span>{JSON.stringify(list)}</span> */}
                 <form onSubmit={(event) => {list.push(task); setTask({label:""}); event.preventDefault(); AddTaskToList(list)}}>
-                <input type="text" value={task.label} className="input" onChange={(event) => {setTask({label: event.target.value, done: false})}} placeholder="Ingresa tu Tarea"/>
+                <input type="text" value={task.label} className="input" onChange={(event) => {setTask({label: event.target.value, done: false})}} placeholder="Enter your Task"/>
             </form>
             <div className="task-list">
                 <hr></hr>
                 <ul className="list-group">
-                    {list.length === 0 ? "No hay tareas, ingresa tu primer To Do":""} 
+                    {list.length === 0 ? "There are no tasks, enter your first To Do":""} 
                     {list.map((item, index) => {
                         return(
                             <li key={index} className="list-group-item">
@@ -92,12 +92,9 @@ export const FormToDo = (props) => {
             <FontAwesomeIcon icon={faTrashAlt} color="white" className="trashIcon" onClick={()=> {setList([]); DeleteAllTasks()}}/>
             </div>
             <hr></hr>
-            <div>
-            <Button className="deleteButton" variant="dark" onClick={() => AddTaskToList(list)}>Presiona aqui al eliminar una tarea</Button>
-            </div>
             <hr></hr>
             <div>
-                <strong>{list.length} {list.length === 1 ? "tarea pendiente" : "tareas pendientes"}</strong>
+                <strong>{list.length > 0 ? `pending task: ${list.length}` : " no pending tasks"}</strong>
             </div>
         </div>
        

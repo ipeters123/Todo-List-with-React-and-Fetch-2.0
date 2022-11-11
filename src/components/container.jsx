@@ -5,7 +5,7 @@ import {TaskList} from "./tasklist.jsx";
 export function Container () {
 	return (
 		<div>
-			<h1 className="titulo">To do's</h1>
+			<h1 className="title">To do's</h1>
 			<FormToDo />
 		</div>
 	);
